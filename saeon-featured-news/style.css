@@ -1,7 +1,7 @@
 *, ::after, ::before {
     box-sizing: border-box;
   }
-  .sn-image{
+  .sn-image,.sn-newslist .btn{
     -webkit-transition: all 0.3s ease-in;
     -o-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
@@ -50,10 +50,15 @@
     font-size: 14px;
     line-height: 24px;
     min-height: 160px;
+    font-size: 14px;
   }
   .sn-excerpt{
     color: #7a7a7a;
   }
+  .sn-newslist .btn{
+    margin-top: 10px;
+    text-transform:uppercase;
+}
   .sn-image {
     display: block;
     height: 190px;
@@ -66,4 +71,10 @@
   }
   .sn-image:hover {
     background-size: 105%;
+  }
+  .sn-newslist h4 a{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
   }
