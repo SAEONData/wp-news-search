@@ -40,6 +40,7 @@ function saeon_featured_news()
     endif;
     $html .= "</div>";
   return $html;
+  
  }
  add_shortcode( 'saeon-featured-news', 'saeon_featured_news' );
 
@@ -48,7 +49,7 @@ function saeon_news_page()
 {
 
 // the query
-$wpb_all_query = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>-1)); 
+$wpb_all_query = new WP_Query(array('post_type' => 'post', 'post_status'=>'publish', 'posts_per_page'=>-1)); 
  
  if ( $wpb_all_query->have_posts() ) : 
     $html = "<div class='sn-container'><ul>";
