@@ -49,8 +49,33 @@ function saeon_news_page()
 {
 
 // the query
-$wpb_all_query = new WP_Query(array('post_type' => 'post', 'post_status'=>'publish', 'posts_per_page'=>-1)); 
- 
+
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+// $args = array(
+//     'posts_per_page' => 3,
+//     'orderby' => 'menu_order',
+//     'order'=> 'ASC',
+//     'paged'=>$paged,
+//     'post_type' => 'post'
+//     );
+
+// $wpb_all_query = new WP_Query($args);
+
+
+
+$wpb_all_query = new WP_Query(
+    array(
+        'post_type' => 'post', 
+        'post_status'=>'publish', 
+        'posts_per_page'=>5, 
+        'paged'=>$paged,
+        'exclude' => 'Issue 04 2020'
+
+    )
+); 
+
+
  if ( $wpb_all_query->have_posts() ) : 
     $html = "<div class='sn-container'><ul>";
 
@@ -74,14 +99,24 @@ $wpb_all_query = new WP_Query(array('post_type' => 'post', 'post_status'=>'publi
 	endwhile;
     
     $html .= "</ul></div>";
-		   
+
     wp_reset_postdata();
- 
-else :
+    $GLOBALS['wp_query']->max_num_pages = $wpb_all_query->max_num_pages;
+    get_the_posts_pagination( array(
+            'mid_size' => 1,
+            'prev_text' => __( 'Prev', 'green' ),
+            'next_text' => __( 'Next', 'green' ),
+            'screen_reader_text' => __( 'Posts navigation' )
+        ) );
+    $html .= "<div class='sn-post-pagi'>" . get_the_posts_pagination() . "</div>";
+    else :
     $html .= "Sorry, no posts matched your criteria";
- endif; 
+    endif; 
 
  return $html;
+
+
+
 }
 add_shortcode( 'saeon-news-list', 'saeon_news_page' );
 

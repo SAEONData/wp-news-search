@@ -78,3 +78,19 @@
     text-overflow: ellipsis;
     display: block;
   }
+  .posts-navigation{
+    display:none;
+  }
+  .posts-navigation[aria-label="Enews Posts navigation"]{
+    display:block;
+  }
+.sn-post-pagi {
+  float: right;
+}
+.sn-post-pagi a[class="page-numbers"],
+.sn-post-pagi span[class="page-numbers current"]{
+  width: 24px;
+  border: 1px solid;
+  display: inline-block;
+  text-align: center;
+}
